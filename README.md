@@ -1,5 +1,5 @@
 # Introduction
-This is a documentation of my personal apporoach to building a functional node.js with heroku as a host provider. 
+This is a documentation of my personal apporoach to building a functional node.js with ember, socket.io, passport on heroku. 
 
 # Libraries
 [Brunch](bunch.io) - Application assembler for HTML5 apps.

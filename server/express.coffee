@@ -9,11 +9,11 @@ exports.startExpress  = (port, base, path, callback) ->
   if process.env.REDISTOGO_URL?
     console.log '--- using Redis remote store'
     redisToGo         = require('url').parse(process.env.REDISTOGO_URL)
-    pub               = redis.createClient(redisToGo.port, redisToGo.hostname)
+    pub               = redis.createClient redisToGo.port, redisToGo.hostname
     pub.auth          redisToGo.auth.split(':')[1]
-    sub               = redis.createClient(redisToGo.port, redisToGo.hostname)
+    sub               = redis.createClient redisToGo.port, redisToGo.hostname
     sub.auth          redisToGo.auth.split(':')[1]
-    client            = redis.createClient(redisToGo.port, redisToGo.hostname)
+    client            = redis.createClient redisToGo.port, redisToGo.hostname
     client.auth       redisToGo.auth.split(':')[1]
   else
     console.log '--- using Redis local store'
@@ -26,10 +26,10 @@ exports.startExpress  = (port, base, path, callback) ->
     client:  client
   }
   sessionConfig       = {
-    key:          'express.pid',
-    secret:       process.env.CLIENT_SECRET || 'mysecret'
-    store:        sessionStore,
-    cookie:       { maxAge: 60 * 60 * 1000 }    
+    key:     'express.pid',
+    secret:  process.env.CLIENT_SECRET || 'mysecret'
+    store:   sessionStore,
+    cookie:  { maxAge: 60 * 60 * 1000 }    
   }
   # --- core ---
   app                 = express()
