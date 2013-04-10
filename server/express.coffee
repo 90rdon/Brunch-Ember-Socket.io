@@ -18,14 +18,15 @@ exports.startExpress  = (port, base, path, callback) ->
     }
   app.configure 'production', ->
     app.use           express.errorHandler()
+  
   # --- listening ---
   server              = app.listen process.env.PORT || port, -> 
     addr              = server.address()
     console.log       '--- app listening on http://' + addr.address + ':' + addr.port
 
-  io                  = require('socket.io').listen(server)
 
   # --- socket.io ---
+  io                  = require('socket.io').listen(server)
   io.configure 'development', ->
     console.log       'socket.io is running on development environment'
     io.set            'log level', 5 
@@ -34,7 +35,6 @@ exports.startExpress  = (port, base, path, callback) ->
                                       'jsonp-polling'
                                       'xhr-polling' ]
     io.set            'polling duration', 5
-
   io.configure 'production', ->
     console.log       'socket.io is running on heroku environment'
     io.enable         'browser client minifaction'
@@ -43,11 +43,11 @@ exports.startExpress  = (port, base, path, callback) ->
     io.set            'log level', 1 
     io.set            'transports', [ 'xhr-polling' ]
     io.set            'polling duration', 10
-
+  # -> '/' 
   io.sockets.on 'connection', (socket) ->
     handshake         = socket.handshake
     socket.emit       'greeting', { msg: 'This message is sent from socket.io' }
-
+  # -> '/member'
   io.of('/member').authorization (handshake, accept) ->
     accept null, true
   .on 'connection', (socket) ->

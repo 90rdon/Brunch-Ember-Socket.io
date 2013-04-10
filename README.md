@@ -17,23 +17,22 @@ This is a documentation of my personal apporoach to building a functional node.j
 * Get [brunch.io](brunch.io). instruction [here](http://blog.stevenlu.com/2012/05/04/brunchio-on-mac-osx/)
 * Create a brunch project. 
 
-		brunch new <name of your project> --skeleton git://github.com/octapus/Brunch-Ember-Socket.io
+		$-> brunch new <name of your project> --skeleton git://github.com/octapus/Brunch-Ember-Socket.io
 
 * Get dependencies for the project
 		
-		npm install
+		$-> npm install
 	It will build itself after the install.
 	
 * Run the server and watch the project
 
-		brunch watch -server
+		$-> brunch watch -server
 		
 * You can then check out your browser 
 		
 		 http://localhost:3333
 	You will get something like this in return on the command prompt
 		
-		dirname = /<your project root>/server
 		info  - socket.io started
 		--- app listening on http://0.0.0.0:3333
 		10 Apr 01:05:22 - info: compiled in 355ms
@@ -46,3 +45,21 @@ This is a documentation of my personal apporoach to building a functional node.j
 		   debug - websocket writing 1::
 	This means you have a socket.io connection with your client.
 	
+*	You can deploy this to heroku by this point. Make sure you have heroku installed or follow the instructions [here](https://toolbelt.heroku.com/).
+
+	The best thing is to test your app locally before deploying to heroku:	
+	
+		$-> brunch build
+		
+		$-> foreman start
+
+
+*	By this point, you should have a remote heroku repository added to your git. Commit your changes to your git master. Then push this to your heroku remote repository.
+
+		$-> git push heroku master
+
+*	Open your app up 
+
+		$-> heroku open
+		
+* 	[Next](https://github.com/octapus/Brunch-Ember-Socket.io/wiki/Building-Node-with-Express.js) we will configure our Express app

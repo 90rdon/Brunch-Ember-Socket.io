@@ -69,8 +69,6 @@ exports.config  =
   # server config are only used during 'brunch watch --server'
   server:
     path:       'server/server.coffee'
-    devhost:    '127.0.0.1'
-    prodhost:   'http://young-brook-4706.herokuapp.com'
     port:       3333
     run:        yes
     base:       '/'
