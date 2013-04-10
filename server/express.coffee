@@ -1,8 +1,6 @@
 sysPath               = require 'path'
 http                  = require 'http'
 express               = require 'express'
-redis                 = require 'redis'
-RedisStore            = require('connect-redis')(express)
 
 exports.startExpress  = (port, base, path, callback) ->
   # --- core ---
