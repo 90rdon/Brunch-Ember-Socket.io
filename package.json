@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "brunch": "~1.6.3",
+    "coffee-script": "~1.6.2",
     "javascript-brunch": ">= 1.0 < 1.6",
     "coffee-script-brunch": ">= 1.0 < 1.6",
     "coffeelint-brunch": "> 1.0 < 1.5",
@@ -30,8 +31,8 @@
     "emblem-brunch": "~0.1.1",
     "express": "~3.1.1",
     "socket.io": "~0.9.14",
-    "coffee-script": "~1.6.2",
-    "jade": "~0.28.2"
+    "redis": "~0.8.3",
+    "connect-redis": "~1.4.5"
   },
   "devDependencies": {
     "chai": "1.2.0",
