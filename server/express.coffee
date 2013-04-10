@@ -1,16 +1,14 @@
 sysPath               = require 'path'
 http                  = require 'http'
 express               = require 'express'
-
+redis                 = require 'redis'
+RedisStore            = require('connect-redis')(express)
 
 exports.startExpress  = (port, base, path, callback) ->
   # --- core ---
   app                 = express()
 
-  console.log 'dirname = ' + __dirname
   app.configure ->
-    app.set 'views', __dirname
-    app.set 'view engine', 'jade'
     app.use       base, express.static path
     app.all       '#{base}/*', (request, response) ->
       response.sendfile sysPath.join path, 'index.html'

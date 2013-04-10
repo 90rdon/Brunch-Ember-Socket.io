@@ -31,7 +31,7 @@ This is a documentation of my personal apporoach to building a functional node.j
 * You can then check out your browser 
 		
 		 http://localhost:3333
-	You will get return to the command prompt
+	You will get something like this in return on the command prompt
 		
 		dirname = /<your project root>/server
 		info  - socket.io started
@@ -44,3 +44,5 @@ This is a documentation of my personal apporoach to building a functional node.j
 		   debug - set heartbeat interval for client xuGzgI4UBwYG-hzPVX18
 		   debug - client authorized for
 		   debug - websocket writing 1::
+	This means you have a socket.io connection with your client.
+	
