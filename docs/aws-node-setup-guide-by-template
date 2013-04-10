@@ -1,0 +1,42 @@
+#Install and configure Node on AWS Elastic Beanstalk
+
+To begin this guide, you will need to download the command line tools at the [AWS Sample Code & Library](http://aws.amazon.com/code/6752709412171743) website.
+
+1. 	Initialize you Git repository
+2.	Create an access key from [Access Credentials](https://aws-portal.amazon.com/gp/aws/securityCredentials).
+3.	Configure AWS Elastic Beanstalk
+	1.	Set your bash PATH to the location of eb.  
+
+		`$ export PATH=${PATH}:*<path to EB CLI package>*/eb/macosx/python2.7/`
+	2.	From your directory where your local repository, initialize the beanstalk process
+
+		`eb init`
+	3.	When you are prompted for the AWS Access key, type your access key you've created from step 4. To get your access key information, go to [Access Credentials](https://aws-portal.amazon.com/gp/aws/securityCredentials).
+
+		`Enter our AWS Access Key ID :`
+	5.	When you are propmoted for the AWS secret key, type your secret key.  To get your secret key information, go to [Access Credentials](https://aws-portal.amazon.com/gp/aws/securityCredentials).
+
+		`Enter your AWS Secret Access Key :`
+
+	6. 	When you are prompted for the AWS Elastic Beanstalk region, type the number of the region. For example, we'll use **US East (Virginia)**.
+
+	7.	When you are prompted for the AWS Elastic Beanstalk application name, type the name of the application. AWS Elastic Beanstalk auto-generates an application name based on the current directory name if an application name has not been previously configured.
+
+	8.	When you are prompted for the AWS Elastic Beanstalk environment name, type the name of the environment. AWS Elastic Beanstalk automatically creates an environment name based on your application name. If you want to accept the default, press Enter.
+
+	9.	When you are prompted for the solution stack, type the number of the solution stack you want. For this example, we'll use **64bit Amazon Linux running Node**.
+
+4.	Create the Application on EB
+	1.	To create the application. Type the following command from your repository directory.
+		
+		`eb start`
+
+5.	Update the Application through Git
+	1.	Push the local Git repository to AWS. Type the following command.
+		
+		`git aws.push`
+
+		AWS Elastic Beanstalk will attempt to start app.js, then server.js, and then `npm start` in that order
+
+
+You can always reference back to the original document provided by [AWS Elastic Beanstalk](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-reference-get-started.html)

@@ -1,0 +1,43 @@
+{
+  "author": "Gordon Chan",
+  "name": "lingu.is",
+  "description": "the project lingu.is",
+  "version": "0.0.1",
+  "homepage": "http://lingu.is",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": "~0.10.x",
+    "npm": "~1.2.x"
+  },
+  "scripts": {
+    "start": "brunch watch --server",
+    "postinstall": "brunch build --optimize",
+    "test": "./bin/test"
+  },
+  "dependencies": {
+    "brunch": "~1.6.3",
+    "javascript-brunch": ">= 1.0 < 1.6",
+    "coffee-script-brunch": ">= 1.0 < 1.6",
+    "coffeelint-brunch": "> 1.0 < 1.5",
+    "css-brunch": ">= 1.0 < 1.6",
+    "stylus-brunch": ">= 1.0 < 1.6",
+    "uglify-js-brunch": ">= 1.0 < 1.6",
+    "clean-css-brunch": ">= 1.0 < 1.6",
+    "auto-reload-brunch": "> 1.0 < 1.5",
+    "emblem-brunch": "~0.1.1",
+    "express": "~3.1.1",
+    "socket.io": "~0.9.14",
+    "coffee-script": "~1.6.2",
+    "jade": "~0.28.2"
+  },
+  "devDependencies": {
+    "chai": "1.2.0",
+    "sinon": "1.4.2",
+    "sinon-chai": "2.1.2",
+    "ws": "0.4.21",
+    "mocha-phantomjs": "~2.0.0"
+  }
+}

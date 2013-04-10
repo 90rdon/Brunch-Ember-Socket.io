@@ -1,0 +1,52 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*~
+*.sass-cache
+
+# OS or Editor folders
+.DS_Store
+.cache
+.project
+.settings
+.tmproj
+nbproject
+Thumbs.db
+
+# AWS Configuration
+.elasticbeanstalk
+
+# NPM packages folder.
+node_modules/
+
+# Brunch folder for temporary files.
+tmp/
+
+# public
+public/
+
+
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+
+# Sublime text files
+*.sublime-project
+*.sublime-workspace
