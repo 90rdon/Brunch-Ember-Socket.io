@@ -33,7 +33,8 @@ require 'templates/member'
 #// Routes
 #/////////////////////////////////
 
-
+require 'routes/indexRoute'
+require 'routes/memberRoute'
 
 #/////////////////////////////////
 #// Store

@@ -6,43 +6,49 @@ express               = require 'express'
 exports.startExpress  = (port, base, path, callback) ->
   # --- core ---
   app                 = express()
-
-  console.log 'dirname = ' + __dirname
   app.configure ->
-    app.set 'views', __dirname
-    app.set 'view engine', 'jade'
-    app.use       base, express.static path
-    app.all       '#{base}/*', (request, response) ->
+    app.use           base, express.static path
+    app.all           '#{base}/*', (request, response) ->
       response.sendfile sysPath.join path, 'index.html'
 
-
+  app.configure 'development', ->
+    app.use           express.logger()
+    app.use           express.errorHandler { 
+      dumpExceptions: true, showStack: true 
+    }
+  app.configure 'production', ->
+    app.use           express.errorHandler()
   # --- listening ---
   server              = app.listen process.env.PORT || port, -> 
-    addr = server.address()
-    console.log '--- app listening on http://' + addr.address + ':' + addr.port
+    addr              = server.address()
+    console.log       '--- app listening on http://' + addr.address + ':' + addr.port
 
   io                  = require('socket.io').listen(server)
 
   # --- socket.io ---
+  io.configure 'development', ->
+    console.log       'socket.io is running on development environment'
+    io.set            'log level', 5 
+    io.set            'transports', [ 'websocket'
+                                      'htmlfile'
+                                      'jsonp-polling'
+                                      'xhr-polling' ]
+    io.set            'polling duration', 5
+
   io.configure 'production', ->
-    io.set    'transports', ['xhr-polling']
-    io.set    'polling duration', 20
+    console.log       'socket.io is running on heroku environment'
+    io.enable         'browser client minifaction'
+    io.enable         'browser client etag'
+    io.enable         'browser client gzip'
+    io.set            'log level', 1 
+    io.set            'transports', ['xhr-polling']
+    io.set            'polling duration', 10
 
   io.sockets.on 'connection', (socket) ->
-    socket.on   'user message', (msg) ->
-      socket.broadcast.emit 'user message', socket.nickname, msg
+    handshake         = socket.handshake
+    socket.emit       'greeting', { msg: 'This message is sent from socket.io' }
 
-    socket.on 'nickname', (nick, fn) ->
-      if nicknames[nick] 
-        fn(true)
-      else
-        fn(false)
-        nicknames[nick] = socket.nickname = nick
-        socket.broadcast.emit 'announcement', nick + ' connected.'
-        io.sockets.emit 'nicknames', nicknames
-
-    socket.on 'disconnect', ->
-      if socket.nickname? 
-        delete nicknames[socket.nickname]
-        socket.broadcast.emit 'announcement', socket.nickname + ' disconnected.'
-        socket.broadcast.emit 'nicknames', nicknames
+  io.of('/member').authorization (handshake, accept) ->
+    accept null, true
+  .on 'connection', (socket) ->
+    socket.emit 'name', { first: 'John' }
