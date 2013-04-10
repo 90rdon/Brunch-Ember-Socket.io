@@ -1,18 +1,7 @@
-# Introduction
-This is a documentation of my personal apporoach to building a functional node.js with ember, socket.io, passport on heroku. 
+## Introduction
+This is a documentation of my personal apporoach to building a functional node.js with heroku as a host provider. 
 
-# Libraries
-[Brunch](bunch.io) - Application assembler for HTML5 apps.
-
-[CoffeeScript](http://coffeescript.org/) - JavaScript annotations.
-
-[Express](http://expressjs.com) - Web app framework.
-
-[Socket.Io](http://socket.io) - WebSocket for realtime apps.
-
-[Passport](http://passportjs.org) - Authentication for Node.js.
-
-# Getting Started
+## Getting Started
 
 * Get [brunch.io](brunch.io). instruction [here](http://blog.stevenlu.com/2012/05/04/brunchio-on-mac-osx/)
 * Create a brunch project. 
@@ -45,6 +34,7 @@ This is a documentation of my personal apporoach to building a functional node.j
 		   debug - websocket writing 1::
 	This means you have a socket.io connection with your client.
 	
+## Deploying to Heroku
 *	You can deploy this to heroku by this point. Make sure you have heroku installed or follow the instructions [here](https://toolbelt.heroku.com/).
 
 	The best thing is to test your app locally before deploying to heroku:	
@@ -61,5 +51,16 @@ This is a documentation of my personal apporoach to building a functional node.j
 *	Open your app up 
 
 		$-> heroku open
+
+
+## Libraries
+[Brunch](bunch.io) - Application assembler for HTML5 apps.
+
+[CoffeeScript](http://coffeescript.org/) - JavaScript annotations.
+
+[Express](http://expressjs.com) - Web app framework.
+
+[Socket.Io](http://socket.io) - WebSocket for realtime apps.
+
+[Passport](http://passportjs.org) - Authentication for Node.js.
 		
-* 	[Next](https://github.com/octapus/Brunch-Ember-Socket.io/wiki/Building-Node-with-Express.js) we will configure our Express app
