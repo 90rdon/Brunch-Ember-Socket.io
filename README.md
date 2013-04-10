@@ -1,5 +1,5 @@
 ## Introduction
-This is a documentation of my personal apporoach to building a functional node.js with heroku as a host provider. 
+This is a documentation of my personal apporoach to building a functional Node.js app with Ember.js, socket.io, passport, deploying on Heroku. 
 
 ## Getting Started
 
