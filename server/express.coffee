@@ -26,22 +26,12 @@ exports.startExpress  = (port, base, path, callback) ->
   io                  = require('socket.io').listen(server)
 
   # --- socket.io ---
-  io.configure 'development', ->
-    console.log       'socket.io is running on development environment'
-    io.set            'log level', 5 
-    io.set            'transports', [ 'websocket'
-                                      'htmlfile'
-                                      'jsonp-polling'
-                                      'xhr-polling' ]
-    io.set            'polling duration', 5
-
-  io.configure 'production', ->
-    console.log       'socket.io is running on heroku environment'
+  io.configure ->
     io.enable         'browser client minifaction'
     io.enable         'browser client etag'
     io.enable         'browser client gzip'
     io.set            'log level', 1 
-    io.set            'transports', ['xhr-polling']
+    io.set            'transports', [ 'xhr-polling' ]
     io.set            'polling duration', 10
 
   io.sockets.on 'connection', (socket) ->
