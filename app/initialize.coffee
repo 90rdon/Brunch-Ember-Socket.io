@@ -8,6 +8,7 @@ require 'templates/application'
 require 'templates/index'
 require 'templates/about'
 require 'templates/_well'
+require 'templates/member'
 
 
 #//////////////////////////////////
@@ -39,12 +40,13 @@ require 'templates/_well'
 #/////////////////////////////////
 
 # App.Store = DS.Store.extend
-#   revision: 11
+#   revision: 12
 
 #/////////////////////////////////
 #// Router
 #/////////////////////////////////
 
 App.Router.map ->
-  @route "about", path: "/about"
-  @route "index", path: "/"
+  @route 'about'
+  @route 'index', path: '/'
+  @route 'member'

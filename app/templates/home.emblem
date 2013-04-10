@@ -9,9 +9,6 @@
         linkTo "about" tagName="li"
           a href="{{view.href}}"
             | About
-        linkTo "member" tagName="li"
-          a href="{{view.href}}"
-            | Member Area
 
   p.alert
     | Main application template Find me in <code>app/templates/application.emblem</code>

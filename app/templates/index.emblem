@@ -1,2 +1,2 @@
-h1 this is my index
+h1 this is my {{msg}}
 p Find me in <code>templates/about.emblem</code>

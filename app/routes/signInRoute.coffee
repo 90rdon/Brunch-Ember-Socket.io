@@ -1,0 +1,1 @@
+App.SignInRoute = Em.Route.extend()

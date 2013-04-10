@@ -1,0 +1,6 @@
+form
+  label Email
+  view Em.TextField valueBinding='view.email'
+  label Password
+  view Em.TextField valueBinding='view.password'
+  button{action 'signIn'} Sign In

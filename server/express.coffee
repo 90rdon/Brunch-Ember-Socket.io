@@ -9,12 +9,11 @@ exports.startExpress  = (port, base, path, callback) ->
 
   console.log 'dirname = ' + __dirname
   app.configure ->
-    app.use express.static(__dirname + '/public')
     app.set 'views', __dirname
     app.set 'view engine', 'jade'
-
-  app.get '/', (req, res) ->
-    res.render 'index', { layout: false }
+    app.use       base, express.static path
+    app.all       '#{base}/*', (request, response) ->
+      response.sendfile sysPath.join path, 'index.html'
 
 
   # --- listening ---

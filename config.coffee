@@ -70,7 +70,7 @@ exports.config  =
   server:
     path:       'server/server.coffee'
     devhost:    '127.0.0.1'
-    prodhost:   'http://evening-beach-9074.herokuapp.com/'
+    prodhost:   'http://young-brook-4706.herokuapp.com'
     port:       3333
     run:        yes
     base:       '/'

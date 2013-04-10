@@ -1,0 +1,4 @@
+#if Auth.authToken
+  view App.SignOutView
+else
+  view App.SignInView
