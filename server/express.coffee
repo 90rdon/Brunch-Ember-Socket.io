@@ -68,7 +68,7 @@ exports.startExpress  = (port, base, path, callback) ->
     app.io.set            'polling duration', 10
 
   # --- routes ---
-  app.io.route 'ready', (req) ->
+  app.io.route 'callingHome', (req) ->
     req.session.name = req.data
     req.session.loginDate = new Date().toString()
     console.log 'req session ->'
@@ -80,7 +80,13 @@ exports.startExpress  = (port, base, path, callback) ->
     req.session.name = 'Johnny'
     req.session.feelings = 'gr8!'
     req.session.save ->
-      req.io.emit 'session', req.session
+      req.io.emit 'helloMessage', req.session
+
+  app.io.route 'callingMember', (req) ->
+    console.log 'member server section'
+    req.session.memberMsg = 'members only ;)'
+    req.session.save ->
+      req.io.emit 'memberCallback', req.session
 
   # # --- listening ---
   # server              = app.listen process.env.PORT || port, -> 
