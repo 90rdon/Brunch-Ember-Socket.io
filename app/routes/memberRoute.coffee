@@ -1,11 +1,11 @@
 App.MemberRoute = Em.Route.extend
   route: '/member',
   setupController: (controller) ->
-    socket = io.connect('/member')
+    socket = io.connect()
 
-    socket.on 'error', (reason) ->
-      console.error 'Unable to connect to socket.io', reason
-      console.dir socket.socket
-
-    socket.on 'name', (data) ->
-      controller.set('info', data.first)
+    socket.on 'session', (data) ->
+      message = 'Hey ' + data.name + '!\n\n'
+      message += 'Server says you feel '+ data.feelings + '\n'
+      message += 'You are in the members only section!\n\n'
+      message += 'Also, you joined ' + data.loginDate + '\n'
+      controller.set('msg', message)

@@ -1,2 +1,2 @@
 h2 Member Area
-p Hello! {{info}}
+p Hello! {{msg}}

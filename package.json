@@ -29,8 +29,7 @@
     "clean-css-brunch": ">= 1.0 < 1.6",
     "auto-reload-brunch": "> 1.0 < 1.5",
     "emblem-brunch": "~0.1.1",
-    "express": "~3.1.1",
-    "socket.io": "~0.9.14",
+    "express.io": "~1.1.11",
     "redis": "~0.8.3",
     "connect-redis": "~1.4.5"
   },
