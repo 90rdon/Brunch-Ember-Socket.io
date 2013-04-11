@@ -1,1 +1,1 @@
-App.SignOutRoute = Auth.Route.extend()
+App.SignOutRoute = Em.Route.extend()

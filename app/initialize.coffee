@@ -9,7 +9,8 @@ require 'templates/index'
 require 'templates/about'
 require 'templates/_well'
 require 'templates/member'
-
+require 'templates/signIn'
+require 'templates/signOut'
 
 #//////////////////////////////////
 #// Models
@@ -21,7 +22,8 @@ require 'templates/member'
 #// Controllers
 #/////////////////////////////////
 
-
+require 'controllers/signInController'
+require 'controllers/signOutController'
 
 #/////////////////////////////////
 #// Views
@@ -35,6 +37,8 @@ require 'templates/member'
 
 require 'routes/indexRoute'
 require 'routes/memberRoute'
+require 'routes/signInRoute'
+require 'routes/signOutRoute'
 
 #/////////////////////////////////
 #// Store
@@ -51,3 +55,5 @@ App.Router.map ->
   @route 'about'
   @route 'index', path: '/'
   @route 'member'
+  @route 'signIn'
+  @route 'signOut'
