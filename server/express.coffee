@@ -48,6 +48,26 @@ exports.startExpress  = (port, base, path, callback) ->
   app.configure 'production', ->
     app.use           express.errorHandler()
   
+
+  # --- socket.io ---
+  app.io.configure 'development', ->
+    console.log           '--- socket.io is running on development environment'
+    app.io.set            'log level', 5 
+    app.io.set            'transports', [ 'websocket'
+                                      'htmlfile'
+                                      'jsonp-polling'
+                                      'xhr-polling' ]
+    app.io.set            'polling duration', 5
+  app.io.configure 'production', ->
+    console.log           '--- socket.io is running on heroku environment'
+    app.io.enable         'browser client minifaction'
+    app.io.enable         'browser client etag'
+    app.io.enable         'browser client gzip'
+    app.io.set            'log level', 1 
+    app.io.set            'transports', [ 'xhr-polling' ]
+    app.io.set            'polling duration', 10
+
+  # --- routes ---
   app.io.route 'ready', (req) ->
     req.session.name = req.data
     req.session.loginDate = new Date().toString()
