@@ -1,3 +1,5 @@
+<a href="/auth/twitter"><img src="images/sign-in-with-twitter-l.png" width="151" height="24"></a>
+h3 Or
 form
   label Email
   view Em.TextField valueBinding='view.email'

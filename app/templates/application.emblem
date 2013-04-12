@@ -6,9 +6,9 @@
         linkTo "index" tagName="li"
           a href="{{view.href}}"
             | Home
-        linkTo "about" tagName="li"
+        linkTo "signIn" tagName="li"
           a href="{{view.href}}"
-            | About
+            | Login
         linkTo "member" tagName="li"
           a href="{{view.href}}"
             | Member Area

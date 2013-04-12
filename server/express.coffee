@@ -3,6 +3,8 @@ http                  = require 'http'
 express               = require 'express.io'
 redis                 = require 'redis'
 RedisStore            = require('connect-redis')(express)
+auth                  = require './lib/auth/auth'
+passport              = require 'passport'
 
 exports.startExpress  = (port, base, path, callback) ->
   # --- session ---
@@ -36,6 +38,8 @@ exports.startExpress  = (port, base, path, callback) ->
   app.configure ->
     app.use           express.cookieParser()
     app.use           express.session sessionConfig
+    app.use           passport.initialize()
+    app.use           passport.session()
     app.use           base, express.static path
     app.all           '#{base}/*', (request, response) ->
       response.sendfile sysPath.join path, 'index.html'
@@ -87,6 +91,17 @@ exports.startExpress  = (port, base, path, callback) ->
     req.session.memberMsg = 'members only ;)'
     req.session.save ->
       req.io.emit 'memberCallback', req.session
+
+  # --- auth ---
+  app.get '/auth/twitter', 
+    passport.authenticate 'twitter', (req, res) ->
+      console.log 'twiiter auth'
+
+  app.get 'auth/twitter/callback', 
+    passport.authenticate 'twitter', { failureRedirect: '/login' }, (req, res) ->
+      console.log 'auth callbacked!!'
+      console.dir req.session
+      res.redirect '/'
 
   # --- listen ---
   app.listen process.env.PORT || port, ->

@@ -1,12 +1,10 @@
 fs      = require 'fs'
 sysPath = require 'path'
 
-paths:
-  public: 'public'
-
 exports.config  =
-  env:           
-    process.env.NODE_ENV || 'development' 
+  paths:
+    public: 'public'
+
   coffeelint:
     pattern: /^app\/.*\.coffee$/
     options:
@@ -72,3 +70,11 @@ exports.config  =
     port:       3333
     run:        yes
     base:       '/'
+
+  auth:
+    Twitter:
+      consumerKey: 'JWG35kp0O2BP0Co8mNFWg'
+      consumerSecret: 'JhZGQCc5Gqx8rUGvoW6pdpXxhYaXX7oKi07htXoJc'
+      callbackURL: 'http://young-brook-4706.herokuapp.com/auth/twitter/callback'
+
+
