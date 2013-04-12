@@ -73,8 +73,8 @@ exports.config  =
 
   auth:
     Twitter:
-      consumerKey: 'JWG35kp0O2BP0Co8mNFWg'
-      consumerSecret: 'JhZGQCc5Gqx8rUGvoW6pdpXxhYaXX7oKi07htXoJc'
+      consumerKey: 'SfGuSgebLa3731RjyFRQRA'
+      consumerSecret: 'WI20TnZCBaq7actB1OCHAnug0gX0jTveZEKJbmgw'
       callbackURL: 'http://young-brook-4706.herokuapp.com/auth/twitter/callback'
 
 
