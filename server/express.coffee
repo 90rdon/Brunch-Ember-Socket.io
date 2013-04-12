@@ -79,10 +79,6 @@ exports.startExpress  = (port, base, path, callback) ->
 
   # --- routes ---
   app.io.route 'callingHome', (req) ->
-    console.log 'login user ----->'
-    console.dir req.session
-    console.log 'passport ----->'
-    console.dir req.session.passport
     req.session.name =  req.data
     req.session.loginDate = new Date().toString()
     req.session.save ->
@@ -95,8 +91,10 @@ exports.startExpress  = (port, base, path, callback) ->
       req.io.emit 'helloMessage', req.session
 
   app.io.route 'callingMember', (req) ->
-    console.log 'member server section'
-    req.session.memberMsg = 'members only ;)'
+    passportInfo = req.session.passport
+    console.log 'passport ----->'
+    console.dir passportInfo
+    req.session.memberMsg = passportInfo.user.displayName
     req.session.save ->
       req.io.emit 'memberCallback', req.session
 
