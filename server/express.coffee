@@ -95,12 +95,11 @@ exports.startExpress  = (port, base, path, callback) ->
   # --- auth ---
   app.get '/auth/twitter', 
     passport.authenticate 'twitter', (req, res) ->
-      console.log 'twiiter auth'
+      console.log 'twitter auth'
 
-  app.get 'auth/twitter/callback', 
+  app.get '/auth/twitter/callback', 
     passport.authenticate 'twitter', { failureRedirect: '/login' }, (req, res) ->
       console.log 'auth callbacked!!'
-      console.dir req.session
       res.redirect '/'
 
   # --- listen ---
