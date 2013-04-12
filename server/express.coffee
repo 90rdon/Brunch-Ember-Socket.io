@@ -42,6 +42,9 @@ exports.startExpress  = (port, base, path, callback) ->
     app.use           express.session sessionConfig
     app.use           passport.initialize()
     app.use           passport.session()
+    app.use       (request, response, next) ->
+      response.header 'Cache-Control', 'no-cache'
+      next()
     app.use           base, express.static path
     app.use           app.router
     app.all           '#{base}/*', (request, response) ->
@@ -75,10 +78,6 @@ exports.startExpress  = (port, base, path, callback) ->
     app.io.set            'polling duration', 10
 
   # --- routes ---
-  app.get '/redirect', (req, res) ->
-    console.log 'redirecting ---->'
-    res.redirect '/'
-
   app.io.route 'callingHome', (req) ->
     req.session.name = req.data
     req.session.loginDate = new Date().toString()
@@ -107,7 +106,7 @@ exports.startExpress  = (port, base, path, callback) ->
   app.get '/auth/twitter/callback', 
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     (req, res) ->
-      res.redirect('/')
+      res.redirect '/'
 
   # --- listen ---
   app.listen process.env.PORT || port, ->
