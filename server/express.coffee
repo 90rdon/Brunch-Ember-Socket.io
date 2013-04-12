@@ -79,7 +79,9 @@ exports.startExpress  = (port, base, path, callback) ->
 
   # --- routes ---
   app.io.route 'callingHome', (req) ->
-    req.session.name = req.session.user.displayName || req.data
+    console.log 'login user ----->'
+    console.dir req.session.user
+    req.session.name = req.data
     req.session.loginDate = new Date().toString()
     console.log 'req session ->'
     console.dir req.session
@@ -99,9 +101,6 @@ exports.startExpress  = (port, base, path, callback) ->
       req.io.emit 'memberCallback', req.session
 
   # --- auth ---
-  app.get '/redirect', (req, res) ->
-    res.redirect '/'
-
   app.get '/auth/twitter', 
     passport.authenticate 'twitter', (req, res) ->
       console.log 'twitter auth'
