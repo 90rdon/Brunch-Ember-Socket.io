@@ -42,7 +42,7 @@ exports.startExpress  = (port, base, path, callback) ->
     app.use           express.session sessionConfig
     app.use           passport.initialize()
     app.use           passport.session()
-    app.use       (request, response, next) ->
+    app.use           (request, response, next) ->
       response.header 'Cache-Control', 'no-cache'
       next()
     app.use           base, express.static path
@@ -99,12 +99,15 @@ exports.startExpress  = (port, base, path, callback) ->
       req.io.emit 'memberCallback', req.session
 
   # --- auth ---
+  app.get '/redirect', (req, res) ->
+    res.redirect '/'
+    
   app.get '/auth/twitter', 
     passport.authenticate 'twitter', (req, res) ->
       console.log 'twitter auth'
 
   app.get '/auth/twitter/callback', 
-    passport.authenticate('twitter', { failureRedirect: '/login' }),
+    passport.authenticate('twitter', { failureRedirect: '/signIn' }),
     (req, res) ->
       res.redirect '/'
 

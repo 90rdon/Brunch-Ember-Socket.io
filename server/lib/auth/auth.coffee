@@ -15,13 +15,19 @@ db                      = require '../db'
 #     done null, false if user.password isnt password
 #     done null, user
 
-passport.serializeUser (user, done) ->
-  console.log 'serializing user'
-  done null, user.id
+# passport.serializeUser (user, done) ->
+#   console.log 'serializing user'
+#   done null, user
 
-passport.deserializeUser (id, done) ->
-  db.users.find id, (err, user) ->
-    done err, user
+# passport.deserializeUser (id, done) ->
+#   db.users.find id, (err, user) ->
+#     done err, user
+
+passport.serializeUser (user, done) ->
+  done null, user
+
+passport.deserializeUser (obj, done) ->
+  done null, obj  
 
 # # BasicStrategy & ClientPasswordStrategy
 # passport.use new BasicStrategy (username, password, done) ->
@@ -53,9 +59,10 @@ passport.deserializeUser (id, done) ->
 
 # Twitter Strategy
 passport.use new TwitterStrategy {
-  consumerKey: config.auth.Twitter.consumerKey
-  consumerSecret: config.auth.Twitter.consumerSecret
+  consumerKey: config.auth.Twitter.CONSUMER_KEY
+  consumerSecret: config.auth.Twitter.CONSUMER_SECRET
   callbackURL: config.auth.Twitter.callbackURL
-}, (token, tokenSecret, profile, done) ->
+}, 
+(token, tokenSecret, profile, done) ->
   process.nextTick ->
     done null, profile
