@@ -37,10 +37,13 @@ exports.startExpress  = (port, base, path, callback) ->
   app                 = express().http().io()
   app.configure ->
     app.use           express.cookieParser()
+    app.use           express.bodyParser()
+    app.use           express.methodOverride()
     app.use           express.session sessionConfig
     app.use           passport.initialize()
     app.use           passport.session()
     app.use           base, express.static path
+    app.use           app.router
     app.all           '#{base}/*', (request, response) ->
       response.sendfile sysPath.join path, 'index.html'
 
@@ -102,7 +105,8 @@ exports.startExpress  = (port, base, path, callback) ->
       console.log 'twitter auth'
 
   app.get '/auth/twitter/callback', 
-    passport.authenticate('twitter', { failureRedirect: '/#/signIn' }), (req, res) ->
+    passport.authenticate('twitter', { failureRedirect: '/#/signIn' }), 
+    (req, res) ->
       console.log 'auth callbacked!!'
       res.redirect '/'
 

@@ -16,6 +16,7 @@ db                      = require '../db'
 #     done null, user
 
 passport.serializeUser (user, done) ->
+  console.log 'serializing user'
   done null, user.id
 
 passport.deserializeUser (id, done) ->
