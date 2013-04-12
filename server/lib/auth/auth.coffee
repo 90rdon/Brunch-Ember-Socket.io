@@ -57,4 +57,5 @@ passport.use new TwitterStrategy {
   consumerSecret: config.auth.Twitter.consumerSecret
   callbackURL: config.auth.Twitter.callbackURL
 }, (token, tokenSecret, profile, done) ->
-  done null, profile
+  process.nextTick ->
+    done null, profile
