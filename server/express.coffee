@@ -80,11 +80,9 @@ exports.startExpress  = (port, base, path, callback) ->
   # --- routes ---
   app.io.route 'callingHome', (req) ->
     console.log 'login user ----->'
-    console.dir req.user
-    req.session.name = req.user.username || req.data
-    req.session.loginDate = new Date().toString()
-    console.log 'req session ->'
     console.dir req.session
+    req.session.name =  req.data
+    req.session.loginDate = new Date().toString()
     req.session.save ->
       req.io.emit 'get-feelings'
 
