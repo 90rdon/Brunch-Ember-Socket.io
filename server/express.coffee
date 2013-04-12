@@ -81,6 +81,8 @@ exports.startExpress  = (port, base, path, callback) ->
   app.io.route 'callingHome', (req) ->
     console.log 'login user ----->'
     console.dir req.session
+    console.log 'passport ----->'
+    console.dir req.session.passport
     req.session.name =  req.data
     req.session.loginDate = new Date().toString()
     req.session.save ->
