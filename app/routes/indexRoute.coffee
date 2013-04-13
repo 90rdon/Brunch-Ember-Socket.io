@@ -13,8 +13,6 @@ App.IndexRoute = Em.Route.extend
 
     socket.on 'helloMessage', (data) ->
       message = 'Hey ' + data.name + '!\n\n'
-      message += 'Server says you feel '+ data.feelings + '\n'
-      message += 'I know these things because sessions work!\n\n'
-      message += 'Also, you joined ' + data.loginDate + '\n'
+      message += 'I heard that you are feeling '+ data.feelings + '\n'
       controller.set('msg', message)
 

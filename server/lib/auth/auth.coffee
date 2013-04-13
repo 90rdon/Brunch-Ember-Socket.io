@@ -7,11 +7,11 @@ TwitterStrategy         = require('passport-twitter').Strategy
 # BearerStrategy          = require('passport-http-bearer').Strategy
 db                      = require '../db'
 
-# # Local Strategy
+# Local Strategy
 # passport.use new LocalStrategy (username, password, done) ->
 #   db.users.findByUsername username, (err, user) ->
 #     done err if err
-#     done null, false if not user?
+#     done null, false if !user?
 #     done null, false if user.password isnt password
 #     done null, user
 
@@ -24,10 +24,14 @@ db                      = require '../db'
 #     done err, user
 
 passport.serializeUser (user, done) ->
+  console.log 'serializing user -----'
+  console.dir user
   done null, user
 
 passport.deserializeUser (obj, done) ->
-  done null, obj  
+  console.log 'deserializing user -----'
+  console.dir obj
+  done null, obj
 
 # # BasicStrategy & ClientPasswordStrategy
 # passport.use new BasicStrategy (username, password, done) ->

@@ -6,6 +6,7 @@ RedisStore            = require('connect-redis')(express)
 auth                  = require './lib/auth/auth'
 passport              = require 'passport'
 
+
 exports.startExpress  = (port, base, path, callback) ->
   # --- session ---
   if process.env.REDISTOGO_URL?
@@ -78,25 +79,27 @@ exports.startExpress  = (port, base, path, callback) ->
     app.io.set            'polling duration', 10
 
   # --- routes ---
+  app.get '/redirect', (req, res) ->
+    res.redirect '#/signIn'
+
   app.io.route 'callingHome', (req) ->
-    req.session.name =  req.data
+    req.session.name = if req.session.passport.user? then req.session.passport.user.displayName else 'who this'
     req.session.loginDate = new Date().toString()
     req.session.save ->
       req.io.emit 'get-feelings'
 
   app.io.route 'send-feelings', (req) ->
-    req.session.name = 'Johnny'
     req.session.feelings = 'gr8!'
     req.session.save ->
       req.io.emit 'helloMessage', req.session
 
-  app.io.route 'callingMember', (req) ->
-    passportInfo = req.session.passport
-    console.log 'passport ----->'
-    console.dir passportInfo
-    req.session.memberMsg = passportInfo.user.displayName
-    req.session.save ->
-      req.io.emit 'memberCallback', req.session
+  app.io.route 'callingMember', 
+    (req) ->
+      console.log 'req user ='
+      console.dir req.user
+      req.session.memberMsg = if req.session.passport.user? then req.session.passport.user.displayName else 'who da?'
+      req.session.save ->
+        req.io.emit 'memberCallback', req.session
 
   # --- auth ---
   app.get '/auth/twitter', 
@@ -104,7 +107,7 @@ exports.startExpress  = (port, base, path, callback) ->
       console.log 'twitter auth'
 
   app.get '/auth/twitter/callback', 
-    passport.authenticate('twitter', { failureRedirect: '/signIn' }),
+    passport.authenticate('twitter', { failureRedirect: '#/signIn' }),
     (req, res) ->
       res.redirect '/'
 
