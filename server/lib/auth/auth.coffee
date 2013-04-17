@@ -1,19 +1,20 @@
 config                  = require('../../../config').config
 passport                = require 'passport'
 TwitterStrategy         = require('passport-twitter').Strategy
-# LocalStrategy           = require('passport-local').Strategy
+LocalStrategy           = require('passport-local').Strategy
 # BasicStrategy           = require('passport-http').BasicStrategy
 # ClientPasswordStrategy  = require('passport-oauth2-client-password').Strategy
 # BearerStrategy          = require('passport-http-bearer').Strategy
 db                      = require '../db'
 
 # Local Strategy
-# passport.use new LocalStrategy (username, password, done) ->
-#   db.users.findByUsername username, (err, user) ->
-#     done err if err
-#     done null, false if !user?
-#     done null, false if user.password isnt password
-#     done null, user
+passport.use new LocalStrategy (username, password, done) ->
+  db.users.findByUsername username, (err, user) ->
+    console.log 'serializing user'
+    return done err if err
+    return done null, false if !user?
+    return done null, false if user.password isnt password
+    done null, user
 
 # passport.serializeUser (user, done) ->
 #   console.log 'serializing user'
@@ -70,3 +71,5 @@ passport.use new TwitterStrategy {
 (token, tokenSecret, profile, done) ->
   process.nextTick ->
     done null, profile
+
+

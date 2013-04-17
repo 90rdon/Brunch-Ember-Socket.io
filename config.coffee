@@ -71,6 +71,18 @@ exports.config  =
     run:        yes
     base:       '/'
 
+  socket:
+    default:
+      transports: [
+        'websocket'
+        'htmlfile'
+        'jsonp-polling'
+        'xhr-polling' ]
+      duration:   5
+    heroku:
+      transports: [ 'xhr-polling' ]
+      duration:   10
+
   auth:
     Twitter:
       CONSUMER_KEY: 'SfGuSgebLa3731RjyFRQRA'

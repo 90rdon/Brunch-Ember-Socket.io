@@ -2,7 +2,7 @@
 h3 Or
 form
   label Email
-  view Em.TextField valueBinding='view.email'
+  view Em.TextField valueBinding='controller.email'
   label Password
-  view Em.TextField valueBinding='view.password'
+  view Em.TextField valueBinding='controller.password'
   button{action 'signIn'} Sign In

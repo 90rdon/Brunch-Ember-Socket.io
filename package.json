@@ -29,11 +29,14 @@
     "clean-css-brunch": ">= 1.0 < 1.6",
     "auto-reload-brunch": "> 1.0 < 1.5",
     "emblem-brunch": "~0.1.1",
-    "express.io": "~1.1.11",
+    "ember-auth": "~3.1.2",
     "redis": "~0.8.3",
     "connect-redis": "~1.4.5",
+    "socket.io": "~0.9.14",
+    "session.socket.io": "~0.1.6",
     "passport": "~0.1.16",
-    "passport-twitter": "~0.1.4"
+    "passport-twitter": "~0.1.4",
+    "passport-local": "~0.1.6"
   },
   "devDependencies": {
     "chai": "1.2.0",

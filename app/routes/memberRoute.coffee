@@ -1,9 +1,12 @@
 App.MemberRoute = Em.Route.extend
   route: '/member',
   setupController: (controller) ->
-    socket = io.connect()
+    socket = io.connect('/member')
 
-    socket.emit 'callingMember'
+    socket.on 'connect', ->
+      socket.on 'error', (reason) ->
+        console.error 'Unable to connect to socket.io', reason
+        console.dir socket.socket
 
-    socket.on 'memberCallback', (data) ->
-      controller.set('msg', data.memberMsg)
+      socket.on 'membermsg', (data) ->
+        controller.set('msg', data.info)
