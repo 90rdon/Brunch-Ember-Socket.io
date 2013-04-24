@@ -1,4 +1,4 @@
-App.MemberRoute = Em.Route.extend
+App.MemberRoute = Auth.Route.extend
   route: '/member',
   setupController: (controller) ->
     socket = io.connect('/member')

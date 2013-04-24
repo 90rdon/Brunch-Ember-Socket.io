@@ -71,6 +71,11 @@ exports.config  =
     run:        yes
     base:       '/'
 
+  client:
+    id:         1
+    secret:     'secret'
+    clientId:   'linguis'
+
   socket:
     default:
       transports: [
@@ -85,8 +90,10 @@ exports.config  =
 
   auth:
     Twitter:
-      CONSUMER_KEY: 'SfGuSgebLa3731RjyFRQRA'
-      CONSUMER_SECRET: 'WI20TnZCBaq7actB1OCHAnug0gX0jTveZEKJbmgw'
-      callbackURL: 'http://young-brook-4706.herokuapp.com/auth/twitter/callback'
+      CONSUMER_KEY:     'SfGuSgebLa3731RjyFRQRA'
+      CONSUMER_SECRET:  'WI20TnZCBaq7actB1OCHAnug0gX0jTveZEKJbmgw'
+      callbackURL:      'http://young-brook-4706.herokuapp.com/auth/twitter/callback'
 
-
+  db:
+    host:               'mongodb://localhost/linguis'
+    poolSize:           3

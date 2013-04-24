@@ -1,12 +1,10 @@
-App.SignInController = Em.ObjectController.extend
-  templateName: 'signIn'
-  email: null
-  password: null
+App.SignInController  = Em.ObjectController.extend  #Auth.SignInController,
+  templateName:       'signIn'
+  username:           null
+  password:           null
 
   signIn: ->
-    socket = io.connect()
-
-    socket.emit 'signIn', {
-      data:
-        email:    @get 'email'
-        password: @get 'password' }
+    # @registerRedirect()
+    Auth.signIn
+      username:       @get 'username'
+      password:       @get 'password'

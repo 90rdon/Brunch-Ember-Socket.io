@@ -5,6 +5,8 @@ redis                   = require 'redis'
 RedisStore              = require('connect-redis')(express)
 auth                    = require './lib/auth/auth'
 passport                = require 'passport'
+# socket                  = require './lib/sockets/socket.io'
+oauth2                  = require './lib/auth/oauth2'
 
 # --- session ---
 if process.env.REDISTOGO_URL?
@@ -51,24 +53,26 @@ app.configure ->
   app.use               passport.initialize()
   app.use               passport.session()
 
-# --- auth ---
-app.post      '/auth/login',
-  passport.authenticate('local', { failureRedirect: '#/signIn' }),
+# --- routes ---
+app.post      '/api/login',
+  passport.authenticate('local'),
   (req, res) ->
-    next() if !req.session.passport?
-    res.redirect '#/signIn' if !req.session.passport.user? 
-    console.log 'auth login - req.session'
-    console.dir req.session
-    req.user = req.session.passport.user
-    console.log 'auth login - req.user'
+    uid = oauth2.uid
+    console.log 'signin req with uid = ' + uid 
     console.dir req.user
-    res.redirect '/'
+    res.json { user_id: req.user.id, auth_token: uid }
 
-app.get       '/auth/twitter', 
-  passport.authenticate 'twitter', (req, res) ->
+app.get       '/api/logout',
+  (req, res) ->
+    req.logout()
+    console.log 'signed out!' if not req.user?
+
+app.get       '/api/twitter', 
+  passport.authenticate 'twitter', 
+  (req, res) ->
     console.log 'twitter auth'
 
-app.get       '/auth/twitter/callback', 
+app.get       '/api/twitter/callback', 
   passport.authenticate('twitter', { failureRedirect: '#/signIn' }),
   (req, res) ->
     res.redirect '/'
@@ -86,6 +90,7 @@ exports.startExpress    = (port, base, path, callback) ->
 
   # --- listen ---
   server                = http.createServer(app)
+  # socket.startSocket    server, sessionConfig
 
   server.listen process.env.PORT || port, ->
     addr                = server.address()

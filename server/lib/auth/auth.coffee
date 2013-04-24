@@ -2,15 +2,15 @@ config                  = require('../../../config').config
 passport                = require 'passport'
 TwitterStrategy         = require('passport-twitter').Strategy
 LocalStrategy           = require('passport-local').Strategy
-# BasicStrategy           = require('passport-http').BasicStrategy
-# ClientPasswordStrategy  = require('passport-oauth2-client-password').Strategy
-# BearerStrategy          = require('passport-http-bearer').Strategy
+BasicStrategy           = require('passport-http').BasicStrategy
+ClientPasswordStrategy  = require('passport-oauth2-client-password').Strategy
+BearerStrategy          = require('passport-http-bearer').Strategy
 db                      = require '../db'
 
 # Local Strategy
 passport.use new LocalStrategy (username, password, done) ->
+  console.log 'local Strategy'
   db.users.findByUsername username, (err, user) ->
-    console.log 'serializing user'
     return done err if err
     return done null, false if !user?
     return done null, false if user.password isnt password
@@ -25,42 +25,42 @@ passport.use new LocalStrategy (username, password, done) ->
 #     done err, user
 
 passport.serializeUser (user, done) ->
-  console.log 'serializing user -----'
-  console.dir user
-  done null, user
+  done null, user.id
 
-passport.deserializeUser (obj, done) ->
-  console.log 'deserializing user -----'
-  console.dir obj
-  done null, obj
+passport.deserializeUser (id, done) ->
+  db.users.find id, (err, user) ->
+    done null, user
 
-# # BasicStrategy & ClientPasswordStrategy
-# passport.use new BasicStrategy (username, password, done) ->
-#   db.clients.findByClientId username, (err, client) ->
-#     done err if err
-#     done null, false if not client?
-#     done null, false if client.clientSecret isnt password
-#     done null, client
+# BasicStrategy & ClientPasswordStrategy
+passport.use new BasicStrategy (username, password, done) ->
+  console.log 'basic Strategy'
+  db.users.findByUsername username, (err, user) ->
+    console.log 'err => ' + err
+    return done err if err
+    return done null, false if !user?
+    return done null, false if user.password isnt password
+    done null, user
 
-# passport.use new ClientPasswordStrategy (clientId, clientSecret, done) ->
-#   db.clients.findByClientId clientId, (err, client) ->
-#     done err if err
-#     done null, false if not client?
-#     done null, false if client.clientSecret isnt clientSecret
-#     done null, client
+passport.use new ClientPasswordStrategy (clientId, clientSecret, done) ->
+  console.log 'client strategy'
+  db.clients.findByClientId clientId, (err, client) ->
+    done err if err
+    done null, false if not client?
+    done null, false if client.clientSecret isnt clientSecret
+    done null, client
 
-# # BearerStrategy
-# passport.use new BearerStrategy (accessToken, done) ->
-#   db.accessToken.find accessToken, (err, token) ->
-#     done err if err
-#     done null, false if not token?
+# BearerStrategy
+passport.use new BearerStrategy (accessToken, done) ->
+  db.accessToken.find accessToken, (err, token) ->
+    done err if err
+    done null, false if not token?
 
-#     db.users.find token.userID, (err, user) ->
-#       done err if err
-#       done null, false if not user?
-#       # need to implement restrict scopes before production 
-#       info = { scope: '*' }
-#       done null, user, info
+    db.users.find token.userID, (err, user) ->
+      done err if err
+      done null, false if not user?
+      # need to implement restrict scopes before production 
+      info = { scope: '*' }
+      done null, user, info
 
 # Twitter Strategy
 passport.use new TwitterStrategy {

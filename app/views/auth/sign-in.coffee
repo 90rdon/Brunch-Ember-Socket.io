@@ -1,8 +1,9 @@
-App.SignInView = Em.View.extend
-  templateName: 'signIn'
+App.AuthSignInView = Em.View.extend
+  templateName: 'auth/sign-in'
 
   email:    null
   password: null
+  remember: false
 
   submit: (event, view) ->
     event.preventDefault()
@@ -10,3 +11,4 @@ App.SignInView = Em.View.extend
     Auth.signIn
       email:    @get 'email'
       password: @get 'password'
+      remember: @get 'remember'

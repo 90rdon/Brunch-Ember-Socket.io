@@ -1,5 +1,5 @@
 clients = [
-  { id: '1', name: 'lingu.is', clientId: 'linguis123', clientSecret: 'ssh-secret' }
+  { id: '1', name: 'linguis', clientId: 'linguis', clientSecret: 'secret' }
 ]
 
 exports.find = (id, done) ->

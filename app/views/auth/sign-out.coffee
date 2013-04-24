@@ -1,5 +1,5 @@
-App.SignOutView = Em.View.extend
-  templateName: 'signOut'
+App.AuthSignOutView = Em.View.extend
+  templateName: 'auth/sign-out'
 
   submit: (event, view) ->
     event.preventDefault()

@@ -29,14 +29,21 @@
     "clean-css-brunch": ">= 1.0 < 1.6",
     "auto-reload-brunch": "> 1.0 < 1.5",
     "emblem-brunch": "~0.1.1",
-    "ember-auth": "~3.1.2",
+    "ember-auth": "~4.1.4",
+    "express": "~3.2.0",
     "redis": "~0.8.3",
     "connect-redis": "~1.4.5",
     "socket.io": "~0.9.14",
     "session.socket.io": "~0.1.6",
     "passport": "~0.1.16",
     "passport-twitter": "~0.1.4",
-    "passport-local": "~0.1.6"
+    "passport-local": "~0.1.6",
+    "passport-http": "~0.2.1",
+    "passport-oauth2-client-password": "~0.1.0",
+    "passport-http-bearer": "~0.2.1",
+    "oauth2orize": "~0.1.0",
+    "connect-ensure-login": "~0.1.0",
+    "mongoose": "~3.6.7"
   },
   "devDependencies": {
     "chai": "1.2.0",

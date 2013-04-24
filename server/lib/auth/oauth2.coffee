@@ -1,7 +1,7 @@
 oauth2orize     = require 'oauth2orize'
 passport        = require 'passport'
 login           = require 'connect-ensure-login'
-db              = require './db'
+db              = require '../db'
 utils           = oauth2orize.utils
 
 # create OAuth 2.0 server
@@ -62,6 +62,21 @@ server.exchange oauth2orize.exchange.code (client, code, redirectURI, done) ->
       done err if err
       done null, token
 
+
+uid = (len) ->
+  buf = []
+  chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+  charlen = chars.length
+  i = 0
+
+  while i < len
+    buf.push chars[getRandomInt(0, charlen - 1)]
+    ++i
+  buf.join ""
+
+getRandomInt = (min, max) ->
+  Math.floor(Math.random() * (max - min + 1)) + min
+
 # user authorization endpoint
 #
 # `authorization` middleware accepts a `validate` callback which is
@@ -98,6 +113,10 @@ exports.decision = [
   server.decision()
 ]
 
+exports.tokenTest = [
+  server.token()
+]
+
 # token endpoint
 #
 # `token` middleware handles client requests to exchange authorization grants
@@ -109,4 +128,10 @@ exports.token = [
   server.token(),
   server.errorHandler()
 ]
+
+
+exports.destory = []
+
+exports.uid = uid 16
+
 
