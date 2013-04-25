@@ -6,13 +6,24 @@
         linkTo "index" tagName="li"
           a href="{{view.href}}"
             | Home
-        linkTo "posts.index" tagName="li"
+        / linkTo "posts.index" tagName="li"
+        /   a href="{{view.href}}"
+        /     | Posts 
+        /     list
+        / if Auth.authToken
+        /   linkTo users.index
+        /     a href="{{view.href}}"
+        /       | Users
+        /       list
+        linkTo "signIn" tagName="li"
           a href="{{view.href}}"
-            | Posts list
-        if Auth.authToken
-          linkTo users.index
-            a href="{{view.href}}"
-              | Users list
+            | Sign In
+        linkTo "signOut" tagName="li"
+          a href="{{view.href}}"
+            | Sign Out
+        linkTo "member" tagName="li"
+          a href="{{view.href}}"
+            | Member
 
   p.alert
     | Main application template Find me in <code>app/templates/application.emblem</code>

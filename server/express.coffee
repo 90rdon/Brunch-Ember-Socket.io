@@ -62,7 +62,7 @@ app.post      '/api/login',
     console.dir req.user
     res.json { user_id: req.user.id, auth_token: uid }
 
-app.get       '/api/logout',
+app.delete      '/api/logout',
   (req, res) ->
     req.logout()
     console.log 'signed out!' if not req.user?
@@ -77,6 +77,15 @@ app.get       '/api/twitter/callback',
   (req, res) ->
     res.redirect '/'
 
+dbusers = require('./lib/db').users
+
+# app.get       '/user/:user_id',
+#   (req, res) ->
+#     res.json { id: 1, username: 'bob', password: 'secret', name: 'Bob Smith', email: 'bob@example.com' }
+# 
+# app.get       '/api/posts',
+#   (req, res) ->
+#     res.json { title: 'post 1', param: '' }
 
 exports.startExpress    = (port, base, path, callback) ->
   app.configure ->

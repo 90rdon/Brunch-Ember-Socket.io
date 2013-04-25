@@ -1,7 +1,8 @@
 Auth.Config.reopen
-  tokenCreateUrl:                   '/users/sign_in'
-  tokenDestroyUrl:                  '/users/sign_out'
+  tokenCreateUrl:                   '/api/login'
+  tokenDestroyUrl:                  '/api/logout'
   tokenKey:                         'auth_token'
+  # baseUrl:                          '/api'
 
   idKey:                            'user_id'
   rememberMe:                       true
@@ -13,5 +14,5 @@ Auth.Config.reopen
   smartSignOutRedirect:             true
   signInRoute:                      'signIn'
   signOutRoute:                     'signOut'
-  signInRedirectFallbackRoute:      'home'
+  signInRedirectFallbackRoute:      'member'
   signOutRedirectFallbackRoute:     'home'

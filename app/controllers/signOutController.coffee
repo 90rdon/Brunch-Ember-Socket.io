@@ -1,4 +1,3 @@
-App.SignOutController = Em.ObjectController.extend  #Auth.SignOutController,
+App.SignOutController = Em.ObjectController.extend
   signOut: ->
-    # @registerRedirect()
     Auth.signOut()
