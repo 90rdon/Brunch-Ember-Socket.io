@@ -1,5 +1,5 @@
 ## Introduction
-This is a documentation of my personal apporoach to building a functional Node.js app with Ember.js, socket.io, passport, deploying on Heroku. 
+This is an introducution on building a functional Node.js app with Ember.js, socket.io, passport, deploying on Heroku. I am using this for my personal projects. 
 
 ## Getting Started
 
@@ -63,4 +63,8 @@ This is a documentation of my personal apporoach to building a functional Node.j
 [Socket.Io](http://socket.io) - WebSocket for realtime apps.
 
 [Passport](http://passportjs.org) - Authentication for Node.js.
+
+## Read more
+Please follow the [Wiki page](https://github.com/octapus/Brunch-Ember-Socket.io/wiki)
+for more detailed walk through. 
 		
