@@ -1,26 +1,21 @@
-mongoose                = require 'mongoose'
+mongoose = require 'mongoose'
 
 # AuthorizationCode
-AuthorizationCodeSchema = new mongoose.Schema(
+AuthorizationCodeSchema = new mongoose.Schema
   code:
     type: String
-
   client_id:
     type: mongoose.Schema.ObjectId
-    ref: 'Client'
-
+    ref:  'client'
   user_id:
     type: mongoose.Schema.ObjectId
-    ref: 'User'
-
+    ref:  'user'
   redirect_uri:
     type: String
-
   scope:
     type: String
-)
 
-mongoose.model 'AuthorizationCode', AuthorizationCodeSchema
+mongoose.model 'authorizationCode', AuthorizationCodeSchema
 
 module.exports = (connection) ->
-  (connection || mongoose).model('AuthorizationCode')
+  (connection || mongoose).model('authorizationCode')

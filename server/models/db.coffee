@@ -1,3 +1,5 @@
+'use strict'
+
 mongoose                = require 'mongoose'
 config                  = require('../../config').config
 host                    = config.db.host

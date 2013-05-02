@@ -1,19 +1,16 @@
-mongoose                = require 'mongoose'
+mongoose = require 'mongoose'
 
 # Client
-ClientSchema = new mongoose.Schema(
+ClientSchema = new mongoose.Schema
   user_id:
     type: mongoose.Schema.ObjectId
-    ref: 'User'
-
+    ref: 'user'
   secret:
     type: String
-
   redirect_uri:
     type: String
-)
 
-mongoose.model 'Client', ClientSchema
+mongoose.model 'client', ClientSchema
 
 module.exports = (connection) ->
-  (connection || mongoose).model('Client')
+  (connection || mongoose).model('client')

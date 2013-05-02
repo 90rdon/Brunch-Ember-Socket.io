@@ -1,26 +1,21 @@
-mongoose                = require 'mongoose'
+mongoose = require 'mongoose'
 
 # AccessToken
-AccessTokenSchema = new mongoose.Schema(
+AccessTokenSchema = new mongoose.Schema
   oauth_token:
     type: String
-
   user_id:
     type: mongoose.Schema.ObjectId
-    ref: 'User'
-
+    ref:  'user'
   client_id:
     type: mongoose.Schema.ObjectId
-    ref: 'Client'
-
+    ref:  'client'
   expires:
     type: Number
-
   scope:
     type: String
-)
 
-mongoose.model 'AccessToken', AccessTokenSchema
+mongoose.model 'accessToken', AccessTokenSchema
 
 module.exports = (connection) ->
-  (connection || mongoose).model('AccessToken')
+  (connection || mongoose).model('accessToken')

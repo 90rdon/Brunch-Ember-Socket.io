@@ -1,5 +1,5 @@
 Auth.Config.reopen
-  tokenCreateUrl:                     '/api/login'
+  tokenCreateUrl:                   '/api/token'
   tokenDestroyUrl:                  '/api/logout'
   tokenKey:                         'auth_token'
   # baseUrl:                          '/api'
