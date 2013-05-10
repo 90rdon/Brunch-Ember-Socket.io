@@ -1,0 +1,8 @@
+use linguis
+
+db.users.insert({name: "Foo Bar", "email": "foo@example.com", password: "123"})
+
+db.users.find()
+{ "_id" : ObjectId("XXXXXXXXXXXXXXXXXXXXXXXX"), "name" : "Foo Bar", "email" : "foo@example.com", "password" : "123" }
+
+db.clients.insert({user_id: ObjectId("XXXXXXXXXXXXXXXXXXXXXXXX"), secret:"abc123", redirect_uri:"http://localhost:3333"})

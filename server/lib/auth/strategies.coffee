@@ -1,28 +1,11 @@
 config                  = require('../../../config').config
 passport                = require 'passport'
 TwitterStrategy         = require('passport-twitter').Strategy
-LocalStrategy           = require('passport-local').Strategy
 BasicStrategy           = require('passport-http').BasicStrategy
 ClientPasswordStrategy  = require('passport-oauth2-client-password').Strategy
 BearerStrategy          = require('passport-http-bearer').Strategy
 models                  = require '../../models'
 
-# --- serializing and deserializing user
-# passport.serializeUser (user, done) ->
-#   done null, user.id
-
-# passport.deserializeUser (id, done) ->
-#   db.users.find id, (err, user) ->
-#     done null, user
-
-# --- Local Strategy ---
-# passport.use new LocalStrategy (username, password, done) ->
-#   console.log 'local Strategy'
-#   db.users.findByUsername username, (err, user) ->
-#     return done err if err
-#     return done null, false if !user?
-#     return done null, false if user.password isnt password
-#     done null, user
 
 # --- BasicStrategy & ClientPasswordStrategy ---
 passport.use new BasicStrategy (username, password, done) ->

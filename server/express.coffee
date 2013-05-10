@@ -55,8 +55,8 @@ app.configure ->
   app.use               passport.session()
 
 # --- routes ---
-app.post      '/api/login', 
-  routes.auth.login
+app.get       '/api/login',
+  oauth2.login
 
 app.post      '/api/logout',
   routes.auth.logout
@@ -64,15 +64,7 @@ app.post      '/api/logout',
 app.get       '/api/info',
   routes.auth.info()
 
-app.get       '/api/authorize/',
-  oauth2.authorization
-
-app.post      '/api/authorize/decision',
-  oauth2.decision
-
-app.post      '/api/token',
-  oauth2.token
-
+# twitter
 app.get       '/api/twitter', 
   passport.authenticate 'twitter', 
   (req, res) ->
