@@ -15,7 +15,7 @@ This is an introducution on building a functional Node.js app with Ember.js, soc
 	
 * Run the server and watch the project
 
-		$-> brunch watch -server
+		$-> brunch watch --server
 		
 * You can then check out your browser 
 		
